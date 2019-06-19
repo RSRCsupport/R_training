@@ -1,0 +1,119 @@
+---
+title: "tidyCoral"
+author: "Rodney"
+date: "19 June 2019"
+output: html_document
+---
+
+```{r setup, warning=FALSE, message=FALSE}
+# install libraries
+library(tidyverse)
+library(janitor)
+install.packages("janitor")
+install.packages("skimr")
+library(stringr)
+
+```
+```{r}
+
+## benthic data
+benthic_url <- 'https://www.nodc.noaa.gov/archive/arc0054/0104255/1.1/data/0-data/cd08/100308OaAla03m.CSV'
+
+## buoy data
+buoy_url <- 'http://www.ndbc.noaa.gov/view_text_file.php?filename=mokh1h2010.txt.gz&dir=data/historical/stdmet/'
+
+```
+```{r}
+benthic_raw <- read.csv(benthic_url)
+head(benthic_raw)
+
+bouy_url <- read.csv(buoy_url)
+
+```
+#Wrangle
+
+```{r wrangle}
+# wrangle time
+benthic <- benthic_raw %>%
+  janitor::clean_names() ## fix the nbames fo the variables
+
+# explore
+
+head(benthic)
+
+# select our columns
+
+benthic <- benthic %>% 
+  select(id_name, point, x, y, id_date) %>% 
+  mutate(date = stringr::str_remove_all(id_date, "#"))
+  ## this is to remove all the "#" string
+
+head(benthic)
+skimr::skim(benthic)
+
+unique(benthic$id_name)
+
+
+
+```
+# vizualizing
+```{r}
+
+ggplot(benthic, aes(date, fill = id_name)) +
+         geom_bar()
+
+
+```
+
+# bouy 
+
+```{r}
+
+# bouy data
+bouy <- readr::read_csv(buoy_url) ## not possible to read csv because its a text file
+
+bouy <- readr::read_table2(buoy_url)
+
+head(bouy)
+
+```
+wrangling 
+```{r}
+names(bouy) <- str_c( ## joint multiple str into a single, join rows 1 and 2 in this case
+  names(bouy),
+  bouy %>% filter(`#YY` == "#yr"), ##the backtips are to refer to strange characters in yoiur data
+  sep ="_")
+  
+
+# looks a lot better
+
+names(bouy)
+
+```
+#clean up the slashes, get rid of'#' and '/'
+```{r}
+
+names(bouy) <- str_replace_all(names(bouy), "#", "")
+names(bouy) <- str_replace_all(names(bouy), "/", "")
+
+names(bouy)
+
+```
+
+#explore
+
+```{r}
+ggplot(bouy, aes(WTMP_degC)) +
+  geom_bar()
+```
+
+#unite 
+TODO
+
+# left-joining betnhic by date
+
+TODO
+
+
+
+

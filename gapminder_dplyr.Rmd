@@ -9,7 +9,8 @@ you hit ctl_alt+I and you get the ``` sutff with the r below
 ```{r}
 
 library(tidyverse)
-
+install.packages(dplyr)
+library(dplyr)
 
 ```
 
@@ -22,6 +23,150 @@ gapminder <- read.csv("https://raw.githubusercontent.com/OHI-Science/data-scienc
 ```{r}
 head(gapminder)
 tail(gapminder)
+## str() - stands for strcuture
+
+str(gapminder)
+
 ```
+
+look at individual columns
+```{r}
+##show the lifeexp column
+gapminder$lifeExp
+
+
+
+```
+
+
+Learning the 'filter()' function
+```{r}
+filter(gapminder, lifeExp < 35)
+
+# just look at mexico
+filter(gapminder, country == 'Mexico')
+```
+
+filter(gapminder, lifeExp < 29)
+
+Average life expectaNCY IN BRAZIL
+```{r}
+brazil_life_exp <- filter(gapminder, country == 'Brazil', year > 1986, year < 2008)
+
+brazil_life_exp
+```
+
+Learning the select 'select()' function
+
+```{r}
+select(gapminder, year, country, lifeExp)
+select(gapminder, -continent, -gdpPercap, -pop) ## select removing variablke
+
+```
+
+Using 'filter()' and 'select()'
+
+```{r}
+TODO
+
+```
+using the pipe operator %>% 
+cmd+shift+m
+ctrl+shift+m
+
+```{r}
+gapminder %>% head()
+
+gap_cambodia <- filter(gapminder, country =="Cambodia") %>%  # and then
+select(-continent, -lifeExp)
+gap_cambodia
+
+TODO another combination 
+
+```
+
+Learn 'mutate()' which adds a new column
+
+```{r}
+gapminder %>% 
+  mutate(gdp = pop * gdpPercap)
+
+```
+Ex 6.10.1
+
+```{r}
+
+gapminder %>% 
+  filter(continent == "ASia", year = 2007) %>% 
+  mutate(pop_thousands = pop/1000) %>% 
+  select(country, year, pop_thousands) %>% 
+  mean(pop_thousands)
+
+
+```
+
+Learning the group_by() function
+
+```{r}
+gapminder %>% 
+  filter(year == 2002)
+  group_by(continent) %>% 
+  summarize(count_pop = sum (pop))
+```
+
+```{r}
+df <- gapminder %>%  
+  group_by(continent, year) %>% 
+  summarize(cont_pop = sum(pop)) %>% 
+  ungroup() ## good tip always to ungroup after you add a grouping variable
+  
+```
+
+
+```{r}
+df <- gapminder %>%  
+  group_by(continent, year) %>% 
+  summarize(cont_pop = sum(pop)) %>% 
+  arrange(-year) ## good tip always to ungroup after you add a grouping variable
+  
+```
+
+Ex
+
+```{r}
+
+##What is the maximum GDP per continent across all years?
+
+df <- gapminder %>%
+  mutate(gdp = pop * gdpPercap) %>% ## mutate create a new column gdp
+  group_by(continent) %>%
+  mutate(max_gdp = max(gdp)) %>%
+  filter(gdp == max_gdp)
+
+head(df)
+
+
+
+
+```
+
+
+What is the maximum GDP per continent across all years?
+
+df <- gapminder %>%
+  mutate(gdp = pop * gdpPercap) %>%
+  group_by(continent) %>%
+  mutate(max_gdp = max(gdp)) %>%
+  filter(gdp == max_gdp)
+
+head(df)
+
+
+
+
+
+
+
+
 
 
