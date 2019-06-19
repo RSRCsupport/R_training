@@ -9,28 +9,77 @@ output: html_document
 # Learning ggplot2
 
 We're learning ggplot2 It's going to be amazing. 
----
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+Load tidyverse
+```{r tidyverse}
+library(tidyverse)
 ```
 
-## R Markdown
+Get the data from github
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+```{r data}
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+ohi_data <- read.csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/OHI_global_data.csv")
 
-```{r cars}
-summary(cars)
 ```
 
-## Including Plots
+we start
 
-You can also embed plots, for example:
+```{r start ggplot}
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+ggplot(data=ohi_data, aes(x=georegion_one, y=OHI_score)) + geom_point()
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+ggplot(data=ohi_data, aes(x=georegion_one, y=OHI_score)) + geom_jitter(with=0.2)
+
+# get barplot
+
+```{r boxplot}
+ ggplot(data=ohi_data, aes(x=georegion_one)) + geom_bar()
+
+```
+
+# get hitogram
+
+```{r histogram}
+TODO
+```
+
+Multiple geoms explorations
+
+```{r multiple geoms}
+
+ohi <-summary <-read.csv("https://github.com/OHI-Science/data-science-training/blob/master/data/OHI_scores_georegion_summary.csv")
+
+ggplot(data=ohi_data, aes(y=OHI_score, x = HDI, color=georegion_one)) + geom_point()
+
+ggplot(data =ohi_data) + geom(aes(y = )) TODO
+
+```
+
+adding a third variable
+
+```{r}
+ggplot(data=ohi_data, aes(x=OHI_score, y=HDI, color = coastal_pop)) + geom_point()
+
+```
+
+adding a third discrete variable
+
+```{r}
+
+?par
+
+
+Color brewer
+```{r}
+install.packages("RColorBrewer")
+library(RColorBrewer)
+display.brewer.all()
+my_palette <- brewer.pal(n=9, "YLorRd")
+
+my_palette <- brewer.pal(n=12, "Set3")
+ggplot(data=ohi_data, aes(x=OHI_score, y =HDI, color = georegion_one)) + 
+
+
