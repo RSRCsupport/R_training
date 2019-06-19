@@ -1,0 +1,27 @@
+---
+title: "gapnider_dplyr"
+author: "Rodney"
+date: "19 June 2019"
+output: html_document
+---
+
+you hit ctl_alt+I and you get the ``` sutff with the r below
+```{r}
+
+library(tidyverse)
+
+
+```
+
+load data
+```{r}
+## loading the gapmider dataset
+gapminder <- read.csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv")
+
+```
+```{r}
+head(gapminder)
+tail(gapminder)
+```
+
+
