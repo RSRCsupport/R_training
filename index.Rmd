@@ -19,7 +19,7 @@ library(tidyverse)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Validation of EOMAP depth layers derived from Landsat and Sentinel vs acoustic validation data for Cairns-Cooktown region of the GBR
+# Validation of EOMAP layers (depth derived from Landsat and Sentinel) vs acoustic validation data for Cairns-Cooktown region of the GBR
 
 
 This document shows linear regressions between EOMAP depth layer derived from Landsat (EOMAP_Landsat) vs acoustic validation data and EOMAP depth layer derived from Sentinel (EOMAP_Sentinel) vs acoustic validation data. The figure below shows the location of acoustic validation data.
