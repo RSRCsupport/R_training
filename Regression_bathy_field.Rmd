@@ -1,5 +1,6 @@
 ---
 title: "Validation of Cairns_Cooktown's EOMAP depth layers derived from Landsat and Sentinel vs acoustic validation data"
+name: Rodney Borrego Acevedo
 output: html_document
 ---
 
@@ -15,17 +16,21 @@ library(tidyverse)
 
 ```
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 1. EOMAP depth validation
 
-This document shows regression plots between EOMAP depth layer derived from Landsat (EOMAP_Landsat) vs acoustic validation data and EOMAP depth layer derived from Sentinel (EOMAP_Sentinel) vs acoustic validation data
+This document shows regression plots between EOMAP depth layer derived from Landsat (EOMAP_Landsat) vs acoustic validation data and EOMAP depth layer derived from Sentinel (EOMAP_Sentinel) vs acoustic validation data. The figure below shows the location of acoustic validation data.
 
 
-## Comparison EOMAP landsat depth vs acoustic data
+![](20190214_TideDoveData_EOMAP.jpg)
+
+
+Fig. 1. Location of acoustic data collected in Cairns-Cooktown (GBR)
+
+'Comparison EOMAP landsat depth vs acoustic data'
 
 
 ```{r, echo=FALSE}
@@ -74,8 +79,6 @@ ggplot(fit$model, aes_string(x = names(fit$model)[2], y = names(fit$model)[1])) 
                      " Slope =",signif(fit$coef[[2]], 5)))
 #,
                      #" P =",signif(summary(fit)$coef[2,4], 5)))
-
-
 
 }
 
