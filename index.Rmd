@@ -3,7 +3,7 @@ name: Rodney Borrego Acevedo (20/06/2019)
 output: html_document
 ---
 
-```{r loading paks, include=FALSE}
+```{r loading packagess, include=FALSE}
 
 library(dplyr)
 library(mgcv)
