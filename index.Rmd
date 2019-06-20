@@ -1,9 +1,12 @@
 ---
 name: Rodney Borrego Acevedo (20/06/2019)
-output: html_document
+output: html_document 
 ---
 
-```{r loading paks, include=FALSE}
+
+
+
+```{r loading packs, include=FALSE}
 
 library(dplyr)
 library(mgcv)
@@ -19,7 +22,7 @@ library(tidyverse)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Validation of Cairns_Cooktown's EOMAP depth layers derived from Landsat and Sentinel vs acoustic validation data
+##**Validation of Cairns_Cooktown's EOMAP depth layers derived from Landsat and Sentinel vs acoustic validation data**
 
 
 This document shows regression plots between EOMAP depth layer derived from Landsat (EOMAP_Landsat) vs acoustic validation data and EOMAP depth layer derived from Sentinel (EOMAP_Sentinel) vs acoustic validation data. The figure below shows the location of acoustic validation data.
