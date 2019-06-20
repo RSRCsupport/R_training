@@ -1,6 +1,6 @@
 ---
 title: "Validation of Cairns_Cooktown's EOMAP depth layers derived from Landsat and Sentinel vs acoustic validation data"
-name: Rodney Borrego Acevedo
+name: Rodney Borrego Acevedo (20/06/2019)
 output: html_document
 ---
 
@@ -30,7 +30,6 @@ This document shows regression plots between EOMAP depth layer derived from Land
 
 Fig. 1. Location of acoustic data collected in Cairns-Cooktown (GBR)
 
-'Comparison EOMAP landsat depth vs acoustic data'
 
 
 ```{r, echo=FALSE}
@@ -47,12 +46,28 @@ RegressionDataset <- dataPrep %>%
 EOMAP_clean <- filter(RegressionDataset, Depth != 0, SDB_10m != -9999.00, SDB_15m != -9999.00)
 ## change sign in depth readings
 EOMAP_to_regress <- mutate(EOMAP_clean, Depth =Depth*(-1))
+head(EOMAP_to_regress)
+## getting variables for regression (all data)
 Acoustic.readings <- EOMAP_to_regress$Depth
 EOMAP.Landsat.Depth <- EOMAP_to_regress$SDB_15m
 EOMAP.Sentinel.Depth <- EOMAP_to_regress$SDB_10m
 
+## getting variables for regression (0-5)
+
+split0_5 <- filter(EOMAP_to_regress, Depth > -5, SDB_15m > -5, SDB_10m > -5 )  
+Acoustic.readings0_5<-split0_5$Depth
+EOMAP.Landsat.Depth0_5 <- split0_5$SDB_15m
+EOMAP.Sentinel.Depth0_5 <- split0_5$SDB_10m
+
+## linear model fitting (all data)
+
 fit <- lm(EOMAP.Landsat.Depth ~ Acoustic.readings)
 fit2 <-lm(EOMAP.Sentinel.Depth ~ Acoustic.readings)
+
+## linear model fitting 0-5
+
+fit3 <-lm(EOMAP.Landsat.Depth0_5 ~ Acoustic.readings0_5 )
+fit4 <-lm(EOMAP.Sentinel.Depth0_5 ~ Acoustic.readings0_5 )
 
 ## these lines are to produce the plots
 ##R2Plot<-ggplot(EOMAP_to_regress,aes(x=Acoustic.readings,y=EOMAP.Landsat.Depth))+geom_point()+scale_y_reverse()+scale_x_reverse()+geom_line(data=fortify(fit), color='Red', aes(x =Acoustic.readings, y = .fitted))
@@ -77,6 +92,10 @@ ggplot(fit$model, aes_string(x = names(fit$model)[2], y = names(fit$model)[1])) 
   labs(title = paste("Coeff of Determination (R^2) = ",signif(summary(fit)$adj.r.squared, 5),
                      "Intercept =",signif(fit$coef[[1]],5 ),
                      " Slope =",signif(fit$coef[[2]], 5)))
+
+
+
+
 #,
                      #" P =",signif(summary(fit)$coef[2,4], 5)))
 
@@ -89,5 +108,10 @@ ggplotRegression(fit)
 ggplotRegression(fit2)
 
 
+ggplotRegression(fit3)
+
+
+
+ggplotRegression(fit4)
 
 
