@@ -6,13 +6,11 @@ output: html_document
 
 
 
-```{r loading packs, include=FALSE}
+```{r loading packages, include=FALSE}
 
 library(dplyr)
 library(mgcv)
 library(ggplot2)
-library(MuMIn)
-library(Cairo)
 library(gridExtra)
 library(tidyverse)
 
@@ -25,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ##**Validation of Cairns_Cooktown's EOMAP depth layers derived from Landsat and Sentinel vs acoustic validation data**
 
 
-This document shows regression plots between EOMAP depth layer derived from Landsat (EOMAP_Landsat) vs acoustic validation data and EOMAP depth layer derived from Sentinel (EOMAP_Sentinel) vs acoustic validation data. The figure below shows the location of acoustic validation data.
+This document shows linear regression plots between EOMAP depth layer derived from Landsat (EOMAP_Landsat) vs acoustic validation data and EOMAP depth layer derived from Sentinel (EOMAP_Sentinel) vs acoustic validation data. The figure below shows the location of acoustic validation data.
 
 
 ![](20190214_TideDoveData_EOMAP.jpg)
