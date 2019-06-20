@@ -46,7 +46,7 @@ RegressionDataset <- dataPrep %>%
 EOMAP_clean <- filter(RegressionDataset, Depth != 0, SDB_10m != -9999.00, SDB_15m != -9999.00)
 ## change sign in depth readings
 EOMAP_to_regress <- mutate(EOMAP_clean, Depth =Depth*(-1))
-head(EOMAP_to_regress)
+##head(EOMAP_to_regress)
 ## getting variables for regression (all data)
 Acoustic.readings <- EOMAP_to_regress$Depth
 EOMAP.Landsat.Depth <- EOMAP_to_regress$SDB_15m
