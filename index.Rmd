@@ -159,7 +159,7 @@ ggplotRegression(fit0_3_a)
 
 ```
 
-- **EOMAP Landsat depth vs Acoustic data (0-3 meter subset)**
+- **EOMAP Sentinel depth vs Acoustic data (0-3 meter subset)**
 
 ```{r, echo = FALSE}
 ggplotRegression(fit0_3_b)
