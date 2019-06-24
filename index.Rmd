@@ -137,21 +137,21 @@ ggplot(fit$model, aes_string(x = names(fit$model)[2], y = names(fit$model)[1])) 
 
 ```
 
-- **EOMAP Landsat depth vs Acoustic data (all data)**
+- **EOMAP Landsat depth vs acoustic data (all data)**
 
 ```{r, echo = FALSE}
 ggplotRegression(fit)
 
 ```
 
-- **EOMAP Sentinel depth vs Acoustic data (all data)**
+- **EOMAP Sentinel depth vs acoustic data (all data)**
 
 ```{r, echo = FALSE}
 ggplotRegression(fit2)
 
 ```
 
-- **EOMAP Landsat depth vs Acoustic data (0-3 meter subset)**
+- **EOMAP Landsat depth vs acoustic data (0-3 meter subset)**
 
 
 ```{r, echo = FALSE}
@@ -159,7 +159,7 @@ ggplotRegression(fit0_3_a)
 
 ```
 
-- **EOMAP Sentinel depth vs Acoustic data (0-3 meter subset)**
+- **EOMAP Sentinel depth vs acoustic data (0-3 meter subset)**
 
 ```{r, echo = FALSE}
 ggplotRegression(fit0_3_b)
@@ -167,42 +167,42 @@ ggplotRegression(fit0_3_b)
 ```
 
 
-- **EOMAP Landsat depth vs Acoustic data (0-5 meter subset)**
+- **EOMAP Landsat depth vs acoustic data (0-5 meter subset)**
 
 ```{r, echo = FALSE}
 ggplotRegression(fit3)
 
 ```
 
-- **EOMAP Sentinel depth vs Acoustic data (0-5 meter subset)**
+- **EOMAP Sentinel depth vs acoustic data (0-5 meter subset)**
 
 ```{r, echo=FALSE}
 ggplotRegression(fit4)
 
 ```
 
-- **EOMAP Landsat depth vs Acoustic data (0-10 meter subset)**
+- **EOMAP Landsat depth vs acoustic data (0-10 meter subset)**
 
 ```{r, echo = FALSE}
 ggplotRegression(fit5)
 
 ```
 
-- **EOMAP Sentinel depth vs Acoustic data (0-10 meter subset)**
+- **EOMAP Sentinel depth vs acoustic data (0-10 meter subset)**
 
 ```{r, echo=FALSE}
 ggplotRegression(fit6)
 
 ```
 
-- **EOMAP Landsat depth vs Acoustic data (0-15 meter subset)**
+- **EOMAP Landsat depth vs acoustic data (0-15 meter subset)**
 
 ```{r, echo = FALSE}
 ggplotRegression(fit7)
 
 ```
 
-- **EOMAP Sentinel depth vs Acoustic data (0-15 meter subset)**
+- **EOMAP Sentinel depth vs acoustic data (0-15 meter subset)**
 
 ```{r, echo=FALSE}
 ggplotRegression(fit8)
