@@ -49,6 +49,13 @@ EOMAP_Sentinel_Depth <- EOMAP_to_regress$SDB_10m
 
 ## getting variables for regression (0-5 m)
 
+split0_3 <- filter(EOMAP_to_regress, Depth > -3, SDB_15m > -3, SDB_10m > -3 )  
+Acoustic_depth_0_3m<-split0_3$Depth
+EOMAP_Landsat_Depth_0_3m <- split0_3$SDB_15m
+EOMAP_Sentinel_Depth_0_3m <- split0_3$SDB_10m
+
+## getting variables for regression (0-5 m)
+
 split0_5 <- filter(EOMAP_to_regress, Depth > -5, SDB_15m > -5, SDB_10m > -5 )  
 Acoustic_depth_0_5m<-split0_5$Depth
 EOMAP_Landsat_Depth_0_5m <- split0_5$SDB_15m
@@ -71,6 +78,18 @@ EOMAP_Sentinel_Depth_0_15m <- split0_15$SDB_10m
 
 fit <- lm(EOMAP_Landsat_Depth ~ Acoustic_depth)
 fit2 <-lm(EOMAP_Sentinel_Depth ~ Acoustic_depth)
+
+## linear model fitting (0-3) (I added this later that's why I named them not in sequence)
+
+fit0_3_a <-lm(EOMAP_Landsat_Depth_0_3m ~ Acoustic_depth_0_3m)
+fit0_3_b<-lm(EOMAP_Sentinel_Depth_0_3m ~ Acoustic_depth_0_3m)
+
+
+## linear modelling fitting (0-3)
+
+fit3 <-lm(EOMAP_Landsat_Depth_0_5m ~ Acoustic_depth_0_5m)
+fit4 <-lm(EOMAP_Sentinel_Depth_0_5m ~ Acoustic_depth_0_5m)
+
 
 ## linear model fitting 0-5
 
@@ -131,6 +150,22 @@ ggplotRegression(fit)
 ggplotRegression(fit2)
 
 ```
+
+- **EOMAP Landsat depth vs Acoustic data (0-3 meter subset)**
+
+
+```{r, echo = FALSE}
+ggplotRegression(fit0_3_a)
+
+```
+
+- **EOMAP Landsat depth vs Acoustic data (0-3 meter subset)**
+
+```{r, echo = FALSE}
+ggplotRegression(fit0_3_b)
+
+```
+
 
 - **EOMAP Landsat depth vs Acoustic data (0-5 meter subset)**
 
