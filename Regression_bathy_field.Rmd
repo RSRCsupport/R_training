@@ -20,6 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This document shows regression plots between EOMAP depth layer derived from Landsat (EOMAP_Landsat) vs acoustic validation data and EOMAP depth layer derived from Sentinel (EOMAP_Sentinel) vs acoustic validation data. The figure below shows the location of acoustic validation data.
 
+# image imported via markdown
 
 ![](20190214_TideDoveData_EOMAP.jpg)
 
